@@ -1,0 +1,11 @@
+{
+    "Arcade Archives: Dragon Spirit":"{data: 3/3/2022}",
+    "Bugsnax":"{data: 28/4/2022}",
+    "Trek to Yomi":"{}",
+    "Tiny Tina's Wonderlands":"{}",
+    "Spelunky 2":"{}",
+    "Tinykin":"{}",
+    "Frogun":"{}",
+    "Tunic":"{}",
+    "The Stanley Parable: Ultra Deluxe":"{}"
+}
