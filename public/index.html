@@ -5,12 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/nav.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <h1>Jogos desse ano sem data</h1>
-    </nav>
+    <header><span class="material-symbols-outlined" onclick="showNavBar()">menu</span></header>
+    <div id="layerOfNavBar" onclick="hideNavBar()">
+        <nav>
+            <h1>Jogos desse ano sem data <span class="material-symbols-outlined" onclick="hideNavBar()">menu</span></h1>
+            <input type="button" value="Adicionar manualmente" id="addManu">
+        </nav>
+    </div>
     <div id="conteiner">
         <div id="calendar">
 

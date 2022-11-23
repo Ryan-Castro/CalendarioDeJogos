@@ -1,0 +1,9 @@
+header{
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    background-color: rgb(57, 57, 57);
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
