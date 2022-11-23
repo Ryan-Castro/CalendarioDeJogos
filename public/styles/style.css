@@ -1,0 +1,27 @@
+*{
+    margin: 0px;
+    padding-top: 0px;
+}
+
+body{
+    background-image: url("https://images4.alphacoders.com/115/thumb-1920-1151249.jpg");
+    background-size: cover;
+}
+
+
+
+#conteiner{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendar{
+    width: 70vh;
+    height: 70vh;
+    background-color: white;
+    box-shadow: 1px 1px 1px black;
+}
+

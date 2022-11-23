@@ -1,11 +1,1 @@
-{
-    "Arcade Archives: Dragon Spirit":"{data: 3/3/2022}",
-    "Bugsnax":"{data: 28/4/2022}",
-    "Trek to Yomi":"{}",
-    "Tiny Tina's Wonderlands":"{}",
-    "Spelunky 2":"{}",
-    "Tinykin":"{}",
-    "Frogun":"{}",
-    "Tunic":"{}",
-    "The Stanley Parable: Ultra Deluxe":"{}"
-}
+{"Arcade Archives: Dragon Spirit":"{data: 3/3/2022}","Bugsnax":"{data: 28/4/2022}","Trek to Yomi":"{}","Tiny Tina's Wonderlands":"{}","Spelunky 2":"{}","Tinykin":"{}","Frogun":"{}","Tunic":"{}","The Stanley Parable: Ultra Deluxe":"{}","The Quarry":"{}","The Pedestrian":"{}","Road 96":"{}","Cult of the Lamb":"{}","No Man's Sky":"{}","Infernax":"{}","Pac-Man Museum+":"{}","Conan Chop Chop":"{}","Dropsy":"{}","Return to Monkey Island":"{}","Pac-Man World Re-PAC":"{}","Kirby and the Forgotten Land":"{}","The House of the Dead: Remake":"{}","Picross S7":"{}","Snow Bros. Special":"{}","Star Wars: The Force Unleashed":"{}","Unlock The Cat":"{}","Watermelon Blocks":"{}","Wreckfest":"{}","GhostWire: Tokyo":"{}","God of War (2018)":"{}","Godfall Ultimate Edition":"{}","Marvel's Spider-Man Remastered":"{}","Martha Is Dead":"{}","Monster Hunter Rise":"{}","Stranger of Paradise: Final Fantasy Origin":"{}","Stray":"{}","Syberia: The World Before":"{}","PowerWash Simulator":"{}","Cannibal Cuisine":"{}","Weird West":"{}","Horizon Forbidden West":"{}","LEGO Builder's Journey":"{}","Lawn Mowing Simulator":"{}","Biomutant":"{}","Chernobylite":"{}","Cyberpunk 2077":"{}","Deliver Us The Moon":"{}","SnowRunner":"{}","What Remains of Edith Finch":"{}","Ni no Kuni: Wrath of the White Witch Remastered":"{}","Turnip Boy Commits Tax Evasion":"{}","Deathloop":"{}","update":"2022-11-23"}
