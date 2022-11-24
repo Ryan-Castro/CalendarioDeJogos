@@ -25,7 +25,7 @@ async function getPromotions(ano){
                 if(error){throw error}
                 itens = await JSON.parse(data)
                 if(itens)(
-                    setTimeout(()=>{resolve()},2000)
+                    setTimeout(()=>{resolve()},4000)
                 )
             })
         })
@@ -38,13 +38,13 @@ async function getPromotions(ano){
             if(itens[game]){   
                 resolve()  
             } else {
-                itens[game] = "{}"
+                itens[game] = {}
                 fs.writeFile(`./files/gamesOf${ano}.txt`, JSON.stringify(itens), (error)=>{
                     if(error){throw error}
                     setTimeout(()=>{ 
                         resolve()
                         itens = ""
-                    },2000)
+                    },4000)
                 })
             }
         })
@@ -100,6 +100,25 @@ router.get("/promotions/:ano", async(req, res)=>{
         })
     }
     
+})
+
+router.get("/searchDate/:name", async(req, res)=>{
+
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(`https://www.google.com.br/search?q=data de lançamento de ${req.params.name}`);
+    const searchDate = await page.evaluate(()=>{
+        return document.querySelector(".Z0LcW").innerText
+    }).catch(async (error)=>{
+        return "data não encontrada" 
+    })
+
+
+
+    res.send({  "stats": "foi porra",
+                "jogo": `${searchDate}`                
+})
+    await browser.close();
 })
 
 module.exports = router

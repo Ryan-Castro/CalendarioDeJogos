@@ -12,9 +12,12 @@
 </head>
 <body>
     <header><span class="material-symbols-outlined" onclick="showNavBar()">menu</span></header>
-    <div id="layerOfNavBar" onclick="hideNavBar()">
+    <div id="layerOfNavBar">
         <nav>
-            <h1>Jogos desse ano sem data <span class="material-symbols-outlined" onclick="hideNavBar()">menu</span></h1>
+            <h1>Jogos desse ano sem data <span class="material-symbols-outlined" id="closeNavbarButton">menu</span></h1>
+            <ul id="undetedGamesList">
+
+            </ul>
             <input type="button" value="Adicionar manualmente" id="addManu">
         </nav>
     </div>
