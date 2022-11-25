@@ -115,10 +115,21 @@ router.get("/searchDate/:name", async(req, res)=>{
 
 
 
-    res.send({  "stats": "foi porra",
-                "jogo": `${searchDate}`                
+    res.send({  "data": `${searchDate}`,
+                "jogo": `${req.params.name}` 
 })
     await browser.close();
 })
 
+router.get("/updateDate", async(req, res)=>{
+
+    fs.readFile(`./files/gamesOf${req.query.ano}.txt`, 'UTF8', async (error, data)=>{
+        itens = await JSON.parse(data)
+        itens[req.query.name] = {"date": req.query.date}
+        fs.writeFile(`./files/gamesOf${req.query.ano}.txt`, JSON.stringify(itens), (error)=>{
+            res.send({"status":"Item Salvo"})
+        })
+    })
+    
+})
 module.exports = router

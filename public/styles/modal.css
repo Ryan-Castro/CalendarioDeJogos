@@ -1,0 +1,17 @@
+#containerModal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.585);
+    top: 0px;
+    left: 0px;
+}
+
+#contentModal{
+    width: 60%;
+    height: 50%;
+    background-color: white;
+}
