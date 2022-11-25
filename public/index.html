@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./styles/nav.css">
     <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/modal.css">
+    <link rel="stylesheet" href="./styles/calendar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />
     <title>Document</title>
 </head>
@@ -22,9 +23,40 @@
             <input type="button" value="Adicionar manualmente" id="addManu">
         </nav>
     </div>
+
+
     <div id="conteiner">
         <div id="calendar">
-
+            <div id="year">
+                <button onclick="prevYear()"><span class="material-symbols-outlined">arrow_back_ios</span></button>
+                <div id="years">
+                    <div>
+                        <h1>2021</h1>
+                        <h1>2022</h1>
+                        <h1>2023</h1>
+                    </div>
+                </div>
+                <button onclick="nextYear()"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+            </div>
+            <div id="month">
+                <button onclick="prevMonth()"><span class="material-symbols-outlined">arrow_back_ios</span></button>
+                <div id="months">
+                    <div>
+                        <h1>Desembro</h1>
+                        <h1>Janeiro</h1>
+                        <h1>Fevereiro</h1>
+                    </div>
+                </div>
+                <button onclick="nextMonth()"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+            </div>
+            <div id="days">
+                <div id="w1" class="week"></div>
+                <div id="w2" class="week"></div>
+                <div id="w3" class="week"></div>
+                <div id="w4" class="week"></div>
+                <div id="w5" class="week"></div>
+                <div id="w6" class="week"></div>
+            </div>
         </div>
     </div>
 
@@ -36,6 +68,7 @@
         </div>
     </div>
 
+    <script src="scripts/calendar.js"></script>
     <script src="scripts/script.js"></script>
 </body>
 </html>

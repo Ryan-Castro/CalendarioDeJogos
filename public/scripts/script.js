@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 let gamesOnServer
 let datedGames      =   []
 let undetedGames    =   []
+let dateCurrent = new Date
 
 function $(element){
     return document.querySelector(element)
@@ -19,6 +20,7 @@ function updatePromotions(){
     }).then(json => {
         gamesOnServer = json
         sort(gamesOnServer)
+        
     })
 }
 
@@ -27,12 +29,14 @@ function sort(obj){
     Object.keys(obj).forEach(game=>{
         if(obj[game].date){
             datedGames.push({"name": game, "date": obj[game].date})
+            
         } else {
             undetedGames.push(game)
         }
     })
 
     updateNavbar()
+    initCalendar(datedGames)
 }
 
 function updateNavbar(){

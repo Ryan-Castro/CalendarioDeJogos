@@ -1,0 +1,119 @@
+let date = new Date
+const months = ["Janeiro", "Fevereito", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Desembro"]
+let monthCorrent = []
+function initCalendar(){
+    updateYear(date.getFullYear())
+    updateMonth(date.getMonth())
+    updateDays(date.getFullYear(), date.getMonth())
+}
+
+function prevYear(){
+    $("#years div").style.marginLeft = "0%"
+    setTimeout(()=>{
+        let newYear = document.querySelectorAll("#years h1")[1].innerText - 1
+        updateYear(newYear)}, 750)
+}
+
+function nextYear(){
+    $("#years div").style.marginLeft = "-200%"
+    setTimeout(()=>{
+        let newYear = Number(document.querySelectorAll("#years h1")[1].innerText) + 1
+        updateYear(newYear)
+        }, 750)
+}
+
+function updateYear(ano){
+    document.querySelectorAll("#years h1")[1].innerText = ano
+    $("#years div").style.transition = "none"
+    $("#years div").style.marginLeft = "-100%"
+    setTimeout(()=>{
+        $("#years div").style.transition = ".5s"
+        document.querySelectorAll("#years h1")[0].innerText = ano - 1
+        document.querySelectorAll("#years h1")[2].innerText = ano + 1
+        updateDays(ano, months.indexOf(document.querySelectorAll("#months h1")[1].innerText))
+    },50)
+}
+
+function updateMonth(mes){
+    document.querySelectorAll("#months h1")[1].innerText = months[mes]
+    $("#months div").style.transition = "none"
+    $("#months div").style.marginLeft = "-100%"
+    setTimeout(()=>{
+        $("#months div").style.transition = ".5s"
+        document.querySelectorAll("#months h1")[0].innerText = mes == 0 ? months[11] : months[mes - 1] 
+        document.querySelectorAll("#months h1")[2].innerText = mes == 11 ? months[0] : months[mes + 1] 
+    },50)
+    updateDays(document.querySelectorAll("#years h1")[1].innerText, mes)
+}
+
+function prevMonth(){
+    $("#months div").style.marginLeft = "0%"
+    setTimeout(()=>{
+        if(months.indexOf(document.querySelectorAll("#months h1")[1].innerText) == 0){
+            updateMonth(11)
+            prevYear(Number(document.querySelectorAll("#years h1")[1].innerText)-1)
+        } else {
+            let newMonth = months.indexOf(document.querySelectorAll("#months h1")[1].innerText) - 1
+            updateMonth(newMonth)
+        }
+    }, 750)
+}
+
+function nextMonth(){
+    $("#months div").style.marginLeft = "-200%"
+    setTimeout(()=>{
+        if(months.indexOf(document.querySelectorAll("#months h1")[1].innerText) == 11){
+            updateMonth(0)
+            nextYear(Number(document.querySelectorAll("#years h1")[1].innerText) + 1)
+        } else {
+            let newMonth = months.indexOf(document.querySelectorAll("#months h1")[1].innerText) + 1
+            updateMonth(newMonth)
+        }
+    }, 750)
+}
+
+function updateDays(year, month){
+    date.setFullYear(year)
+    date.setMonth(month + 1)
+    date.setDate(0)
+    let daysOfMonth = date.getDate()
+    monthCorrent = []
+    for(let i = 1; i <= daysOfMonth; i++){
+        date.setMonth(month)
+        date.setDate(i)
+        monthCorrent.push([date.getDate(), date.getDay()])
+    }
+    createWeeks(month)
+}
+
+function createWeeks(month){
+    date.setDate(0)
+    let cont = 8 - monthCorrent[0][1]
+    let lC 
+    let b = 1
+    for(let w = 1; w < 7; w++){
+        $(`#w${w}`).innerHTML = ""
+        if(w==1){
+            for(let d = -monthCorrent[0][1]+1; d < cont; d++){
+                if(d<1){
+                    $(`#w${w}`).innerHTML += `<div class="dayM">${date.getDate() + d}</div>`
+                } else {
+                    $(`#w${w}`).innerHTML += `<div class="day">${monthCorrent[d-1][0]}</div>`
+                    lC = d
+                }
+            }
+        }else{
+            for(let d = 0; d < 7; d++){
+                if(monthCorrent.length != lC){
+                    $(`#w${w}`).innerHTML += `<div class="day">${monthCorrent[lC][0]}</div>`
+                    lC++
+                }else{
+                    date.setMonth(month + 1)
+                    date.setDate(b)
+                    $(`#w${w}`).innerHTML += `<div class="dayM">${b}</div>`
+                    b++
+                }
+            }
+        }
+    }
+}
