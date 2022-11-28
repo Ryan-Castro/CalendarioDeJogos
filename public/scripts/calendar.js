@@ -4,17 +4,17 @@ let monthCorrent = []
 let year = date.getFullYear()
 let month
 function initCalendar(){
-    updateYear(date.getFullYear())
+    updateYear(year)
     updateMonth(date.getMonth())
 }
 
 function prevYear(){
     $("#years div").style.marginLeft = "0%"
     setTimeout(()=>{
-        let newYear = document.querySelectorAll("#years h1")[1].innerText - 1
+        let newYear = Number(document.querySelectorAll("#years h1")[1].innerText) - 1
         updateYear(newYear)
-        updateCalendar()
     }, 750)
+
 }
 
 function nextYear(){
@@ -22,20 +22,29 @@ function nextYear(){
     setTimeout(()=>{
         let newYear = Number(document.querySelectorAll("#years h1")[1].innerText) + 1
         updateYear(newYear)
-        updateCalendar()
         }, 750)
+        
 }
 
 function updateYear(ano){
-    document.querySelectorAll("#years h1")[1].innerText = ano
-    $("#years div").style.transition = "none"
-    $("#years div").style.marginLeft = "-100%"
-    setTimeout(()=>{
-        $("#years div").style.transition = ".5s"
-        document.querySelectorAll("#years h1")[0].innerText = ano - 1
-        document.querySelectorAll("#years h1")[2].innerText = ano + 1
-        updateDays(ano, months.indexOf(document.querySelectorAll("#months h1")[1].innerText))
-    },50)
+    console.log(ano <= date.getFullYear())
+    if(ano > 1977 && ano <= date.getFullYear()){
+        document.querySelectorAll("#years h1")[1].innerText = ano
+        $("#years div").style.transition = "none"
+        $("#years div").style.marginLeft = "-100%"
+        setTimeout(()=>{
+            $("#years div").style.transition = ".5s"
+            document.querySelectorAll("#years h1")[0].innerText = ano - 1
+            document.querySelectorAll("#years h1")[2].innerText = ano + 1
+            updateDays(ano, months.indexOf(document.querySelectorAll("#months h1")[1].innerText))
+            if(findYear != ano){
+                updateCalendar(ano)
+            }
+        },50)
+    } else {
+        alert("Ano não válido")
+        $("#years div").style.marginLeft = "-100%"
+    }
 }
 
 function updateMonth(mes){
@@ -51,6 +60,7 @@ function updateMonth(mes){
 }
 
 function prevMonth(){
+    $("#load").style.display = "flex"
     $("#months div").style.marginLeft = "0%"
     setTimeout(()=>{
         if(months.indexOf(document.querySelectorAll("#months h1")[1].innerText) == 0){
@@ -64,6 +74,7 @@ function prevMonth(){
 }
 
 function nextMonth(){
+    $("#load").style.display = "flex"
     $("#months div").style.marginLeft = "-200%"
     setTimeout(()=>{
         if(months.indexOf(document.querySelectorAll("#months h1")[1].innerText) == 11){
@@ -91,6 +102,7 @@ function updateDays(yearP, monthP){
     }
     createWeeks(month)
     sortCalendar()
+    date.setMonth(monthP)
 }
 
 function createWeeks(month){
@@ -105,7 +117,7 @@ function createWeeks(month){
                 if(d<1){
                     $(`#w${w}`).innerHTML += `<div class="dayM">${date.getDate() + d}</div>`
                 } else {
-                    $(`#w${w}`).innerHTML += `<div class="day ${monthCorrent[d-1][0]}">${monthCorrent[d-1][0]}</div>`
+                    $(`#w${w}`).innerHTML += `<div class="day d${monthCorrent[d-1][0]}">${monthCorrent[d-1][0]}</div>`
                     lC = d
                 }
             }
@@ -127,9 +139,11 @@ function createWeeks(month){
 
 function sortCalendar(){
     datedGames.forEach(game=>{
+        
         let dismemberDate = game.date.split("/")
         if(dismemberDate[1] == month+1){
-            document.querySelector(`.d${dismemberDate[0]}`).innerHTML += `<p>${game.name}</p>`
+            document.querySelector(`.d${Number(dismemberDate[0])}`).innerHTML += `<p>${game.name}</p>`
         }
     })
+    document.querySelector("#load").style.display = "none"
 }

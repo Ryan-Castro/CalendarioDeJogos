@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', ()=>{
-    updateCalendar()
+    updateCalendar(year)
 })
 
 let gamesOnServer
-let datedGames      =   []
-let undetedGames    =   []
+let datedGames      =   [];
+let undetedGames    =   [];
+let findYear 
 
 function $(element){
     return document.querySelector(element)
@@ -12,9 +13,10 @@ function $(element){
 
 
 
-function updateCalendar(){
-
-    fetch(`http://localhost:3000/api/promotions/${year}`).then(res=>{
+function updateCalendar(ano){
+    $("#load").style.display = "flex"
+    findYear = ano
+    fetch(`http://localhost:3000/api/promotions/${ano}`).then(res=>{
         return res.json()
     }).then(json => {
         gamesOnServer = json
@@ -28,14 +30,16 @@ function sort(obj){
     Object.keys(obj).forEach(game=>{
     if(game != "update"){        
         if(obj[game].date){
-            datedGames.push({"name": game, "date": obj[game].date})  
+            if(obj[game].date != 'undefined'){
+                datedGames.push({"name": game, "date": obj[game].date})
+            }  
         } else {
             undetedGames.push(game)
         }}
     })
 
     updateNavbar()
-    initCalendar(datedGames)
+    initCalendar()
 }
 
 function updateNavbar(){
@@ -46,6 +50,7 @@ function updateNavbar(){
 }
 
 function searchDate(game){
+    $("#load").style.display = "flex"
     fetch(`http://localhost:3000/api/searchDate/${game}`).then(res=>{
         return res.json()
     }).then(json => {
@@ -54,20 +59,33 @@ function searchDate(game){
 }
 
 function showModal(obj){
-    
+    $("#load").style.display = "none"
     let dateFormated = formateDate(obj.data)
     if(obj.data != "data não encontrada"){
         $("#containerModal").style.display = "flex"
         $("#contentModal>h1").innerHTML = `${obj.jogo} é desse de ${dateFormated}` 
-        $("#contentInputs").innerHTML = `<input type="button" onclick="updateFile('${obj.jogo}', '${dateFormated}')" value="Atualizar a Data">`
+        $("#contentInputs").innerHTML = `
+            <input type="button" onclick="updateFile('${obj.jogo}', '${dateFormated}')" value="Atualizar a Data">
+            <input type="button" onclick="add('${obj.jogo}')" value="Atualizar a Data Manualmente">
+            <input type="button" onclick="updateFile('${obj.jogo}', 'undefined')" value="Descartar esse jogo">
+            `
     }
 }
 
+function add(nameOfGame){
+    $('#containerModalManu').style.display = "flex"
+    $('#nameOfGame').value = nameOfGame
+    $('#dateOfGameManu').min = `${year}-01-01`
+    $('#dateOfGameManu').max = `${year}-12-31`
+}
+
+function saved(){
+    let dateOfGameManu = ($('#dateOfGameManu').value).split("-")
+    updateFile($('#nameOfGame').value, `${dateOfGameManu[2]}/${dateOfGameManu[1]}/${dateOfGameManu[0]}`)
+}
+
 function updateFile(gameName, gameDate){
-
-
-    
-    fetch(`http://localhost:3000/api/updateDate?name=${gameName}&date=${gameDate}&ano=2017`).then(res=>{
+    fetch(`http://localhost:3000/api/updateDate?name=${gameName}&date=${gameDate}&ano=${year}`).then(res=>{
         return res.json()
     }).then(json => {
         console.log(json)
@@ -123,5 +141,16 @@ function hideNavBar(e){
     }
 }
 
+function hideModal(e){
+    if(e.target.id == "containerModal"){
+        $("#containerModal").style.display = "none"
+    }
+    if(e.target.id == "containerModalManu"){
+        $("#containerModalManu").style.display = "none"
+    }
+}
+
 $("#layerOfNavBar").addEventListener("click", hideNavBar)
 $("#closeNavbarButton").addEventListener("click", hideNavBar)
+$("#containerModal").addEventListener("click", hideModal)
+$("#containerModalManu").addEventListener("click", hideModal)
