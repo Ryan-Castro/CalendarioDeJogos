@@ -46,6 +46,14 @@
     width: 10vh;
     height: 10vh;
     border: 1px solid black;
+    overflow: auto;
+    transition: .5s;
+    background-color: white;
+}
+
+.day:hover{
+    transform: scale(2.7);
+
 }
 
 .dayM{

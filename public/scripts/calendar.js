@@ -1,17 +1,20 @@
 let date = new Date
-const months = ["Janeiro", "Fevereito", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Desembro"]
+const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Desembro"]
 let monthCorrent = []
+let year = date.getFullYear()
+let month
 function initCalendar(){
     updateYear(date.getFullYear())
     updateMonth(date.getMonth())
-    updateDays(date.getFullYear(), date.getMonth())
 }
 
 function prevYear(){
     $("#years div").style.marginLeft = "0%"
     setTimeout(()=>{
         let newYear = document.querySelectorAll("#years h1")[1].innerText - 1
-        updateYear(newYear)}, 750)
+        updateYear(newYear)
+        updateCalendar()
+    }, 750)
 }
 
 function nextYear(){
@@ -19,6 +22,7 @@ function nextYear(){
     setTimeout(()=>{
         let newYear = Number(document.querySelectorAll("#years h1")[1].innerText) + 1
         updateYear(newYear)
+        updateCalendar()
         }, 750)
 }
 
@@ -72,9 +76,11 @@ function nextMonth(){
     }, 750)
 }
 
-function updateDays(year, month){
-    date.setFullYear(year)
-    date.setMonth(month + 1)
+function updateDays(yearP, monthP){
+    year = yearP
+    month = monthP
+    date.setFullYear(yearP)
+    date.setMonth(monthP + 1)
     date.setDate(0)
     let daysOfMonth = date.getDate()
     monthCorrent = []
@@ -84,6 +90,7 @@ function updateDays(year, month){
         monthCorrent.push([date.getDate(), date.getDay()])
     }
     createWeeks(month)
+    sortCalendar()
 }
 
 function createWeeks(month){
@@ -98,14 +105,14 @@ function createWeeks(month){
                 if(d<1){
                     $(`#w${w}`).innerHTML += `<div class="dayM">${date.getDate() + d}</div>`
                 } else {
-                    $(`#w${w}`).innerHTML += `<div class="day">${monthCorrent[d-1][0]}</div>`
+                    $(`#w${w}`).innerHTML += `<div class="day ${monthCorrent[d-1][0]}">${monthCorrent[d-1][0]}</div>`
                     lC = d
                 }
             }
         }else{
             for(let d = 0; d < 7; d++){
                 if(monthCorrent.length != lC){
-                    $(`#w${w}`).innerHTML += `<div class="day">${monthCorrent[lC][0]}</div>`
+                    $(`#w${w}`).innerHTML += `<div class="day d${monthCorrent[lC][0]}">${monthCorrent[lC][0]}</div>`
                     lC++
                 }else{
                     date.setMonth(month + 1)
@@ -116,4 +123,13 @@ function createWeeks(month){
             }
         }
     }
+}
+
+function sortCalendar(){
+    datedGames.forEach(game=>{
+        let dismemberDate = game.date.split("/")
+        if(dismemberDate[1] == month+1){
+            document.querySelector(`.d${dismemberDate[0]}`).innerHTML += `<p>${game.name}</p>`
+        }
+    })
 }

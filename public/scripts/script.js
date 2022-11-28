@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', ()=>{
-    updatePromotions()
+    updateCalendar()
 })
 
 let gamesOnServer
 let datedGames      =   []
 let undetedGames    =   []
-let dateCurrent = new Date
 
 function $(element){
     return document.querySelector(element)
@@ -13,9 +12,9 @@ function $(element){
 
 
 
-function updatePromotions(){
+function updateCalendar(){
 
-    fetch('http://localhost:3000/api/promotions/2017').then(res=>{
+    fetch(`http://localhost:3000/api/promotions/${year}`).then(res=>{
         return res.json()
     }).then(json => {
         gamesOnServer = json
@@ -27,12 +26,12 @@ function updatePromotions(){
 
 function sort(obj){
     Object.keys(obj).forEach(game=>{
+    if(game != "update"){        
         if(obj[game].date){
-            datedGames.push({"name": game, "date": obj[game].date})
-            
+            datedGames.push({"name": game, "date": obj[game].date})  
         } else {
             undetedGames.push(game)
-        }
+        }}
     })
 
     updateNavbar()
