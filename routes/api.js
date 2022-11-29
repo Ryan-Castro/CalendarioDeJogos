@@ -119,7 +119,7 @@ router.get("/searchDate/:name", async(req, res)=>{
                 "jogo": `${req.params.name}` 
 })
     await browser.close();
-})
+}) 
 
 router.get("/updateDate", async(req, res)=>{
 
