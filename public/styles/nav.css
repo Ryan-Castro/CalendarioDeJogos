@@ -67,3 +67,9 @@ nav #addManu{
     justify-content: space-between;
     padding: 15px;
 }
+
+@media screen and (max-width: 800px) {
+    nav{
+        width: 100vw;
+    }
+}
