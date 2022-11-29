@@ -16,7 +16,7 @@ function $(element){
 function updateCalendar(ano){
     $("#load").style.display = "flex"
     findYear = ano
-    fetch(`http://localhost:3000/api/promotions/${ano}`).then(res=>{
+    fetch(`http://localhost:${process.env.PORT}/api/promotions/${ano}`).then(res=>{
         return res.json()
     }).then(json => {
         gamesOnServer = json
@@ -51,7 +51,7 @@ function updateNavbar(){
 
 function searchDate(game){
     $("#load").style.display = "flex"
-    fetch(`http://localhost:3000/api/searchDate/${game}`).then(res=>{
+    fetch(`http://${process.env.PORT}/api/searchDate/${game}`).then(res=>{
         return res.json()
     }).then(json => {
         showModal(json)
@@ -85,7 +85,7 @@ function saved(){
 }
 
 function updateFile(gameName, gameDate){
-    fetch(`http://localhost:3000/api/updateDate?name=${gameName}&date=${gameDate}&ano=${year}`).then(res=>{
+    fetch(`http://${process.env.PORT}/api/updateDate?name=${gameName}&date=${gameDate}&ano=${year}`).then(res=>{
         return res.json()
     }).then(json => {
         console.log(json)
