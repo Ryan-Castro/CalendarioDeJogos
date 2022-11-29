@@ -9,16 +9,10 @@
     <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/modal.css">
     <link rel="stylesheet" href="./styles/calendar.css">
-    <link rel="stylesheet" href="./styles/load.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />
     <title>Document</title>
 </head>
 <body>
-    <div id="load">
-        <div id="circleLoad">
-
-        </div>
-    </div>    
     <header><span class="material-symbols-outlined" onclick="showNavBar()">menu</span></header>
     <div id="layerOfNavBar">
         <nav>
@@ -26,7 +20,7 @@
             <ul id="undetedGamesList">
 
             </ul>
-            <input type="button" value="Adicionar manualmente" id="addManu" onclick="add('')">
+            <input type="button" value="Adicionar manualmente" id="addManu">
         </nav>
     </div>
 
@@ -71,14 +65,6 @@
             <h1></h1>
             <h2>O que deseja fazer?</h2>
             <div id="contentInputs"></div>
-        </div>
-    </div>
-
-    <div id="containerModalManu">
-        <div id="contentModalManu">
-            <input type="text" placeholder="Escolha o nome do jogo" id="nameOfGame">
-            <input type="date" id="dateOfGameManu">
-            <input type="button" value="Salvar" onclick="saved()" id="saved">
         </div>
     </div>
 

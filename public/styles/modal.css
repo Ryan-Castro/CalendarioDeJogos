@@ -1,8 +1,7 @@
-#containerModal, #containerModalManu{
+#containerModal{
     width: 100vw;
     height: 100vh;
     position: fixed;
-    z-index: 10;
     display: none;
     justify-content: center;
     align-items: center;
@@ -13,59 +12,6 @@
 
 #contentModal{
     width: 60%;
-    height: 35%;
+    height: 50%;
     background-color: white;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 50px;
-}
-#contentModal input{
-    width: 200px;
-    height: 60px;
-    background-color: dodgerblue;
-    color: white;
-}
-#contentInputs{
-    width: 100%;
-    padding: 25px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-#contentModalManu{
-    width: 30%;
-    height: 10%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: white;
-}
-
-#saved{
-    background-color: dodgerblue;
-    color: white;
-    width: 75px;
-    height: 25px;
-}
-
-@media screen and (max-width: 800px) {
-
-    #contentModal{
-        width: 100%;
-        padding: 20px 0px;
-        height: 60%;
-    }
-    #contentInputs{
-        flex-direction: column;
-    }
-    #contentInputs input{
-        margin-top: 10px;
-        width: 300px;
-        font-size: 20px;
-    }
-    #contentModalManu{
-        width: 90%;
-    }
-
 }
