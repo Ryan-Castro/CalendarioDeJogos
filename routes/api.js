@@ -75,7 +75,7 @@ async function getPromotions(ano){
 
 
 
-router.get("/promotions/:ano", async(req, res)=>{
+router.get("/games/:ano", async(req, res)=>{
     
     if(fs.existsSync(`./files/gamesOf${req.params.ano}.txt`)){
         fs.readFile(`./files/gamesOf${req.params.ano}.txt`, 'UTF8', async (error, data)=>{

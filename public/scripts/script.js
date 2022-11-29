@@ -16,7 +16,7 @@ function $(element){
 function updateCalendar(ano){
     $("#load").style.display = "flex"
     findYear = ano
-    fetch(`http://localhost:3000/api/promotions/${ano}`).then(res=>{
+    fetch(`http://localhost:3000/api/games/${ano}`).then(res=>{
         return res.json()
     }).then(json => {
         gamesOnServer = json

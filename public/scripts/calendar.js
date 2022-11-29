@@ -27,7 +27,6 @@ function nextYear(){
 }
 
 function updateYear(ano){
-    console.log(ano <= date.getFullYear())
     if(ano > 1977 && ano <= date.getFullYear()){
         document.querySelectorAll("#years h1")[1].innerText = ano
         $("#years div").style.transition = "none"
